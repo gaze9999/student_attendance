@@ -1,3 +1,6 @@
+<?php
+    require_once('./db.inc.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +26,7 @@
                                 <th scope="col">更新時間</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="tbody">
                             <tr>
                                 <td scope="col">1</td>
                                 <td scope="col">王OO</td>
@@ -31,19 +34,28 @@
                                 <td scope="col">1970-01-01</td>
                             </tr>
                         </tbody>
+                    <!-- <table class="table"> -->
+                        <!-- <tfoot class="tfoot-dark"> -->
                         <tfoot>
                             <tr>
-                                <td>
-                                <input type="text" id="sInput" value="" max-length="50">
-                                </td>
-                            <tr>
-                                <td>
-                                    <button class="btn_add">新增</button>
-                                </td>
+                                <td scope="col">學生編號</td>
+                                <td scope="col">學生姓名</td>
+                                <td scope="col">加入時間</td>
+                                <td scope="col">更新時間</td>
                             </tr>
+                            <tr>
+                                <td scope="col">A</td>
+                                <td scope="col"><input type="text" id="sInput" value="" max-length="50"></td>
+                            </tr>
+                        <!-- </tbody> -->
+                        <!-- <tfoot> -->
+                            <tr>
+                                <td scope="col">
+                                    <button class="btn-add btn btn-primary" id="btn-add" name="btn-add" role="button">新增</button>
+                                </td>
                             </tr>
                         </tfoot>
-                    </table>
+                    <!-- </table> -->
                 </div>
             </div>
         </div>
