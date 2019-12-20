@@ -17,45 +17,56 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">學生編號</th>
-                                <th scope="col">學生姓名</th>
-                                <th scope="col">加入時間</th>
-                                <th scope="col">更新時間</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody">
-                            <tr>
-                                <td scope="col">1</td>
-                                <td scope="col">王OO</td>
-                                <td scope="col">1970-01-01</td>
-                                <td scope="col">1970-01-01</td>
-                            </tr>
-                        </tbody>
-                    <!-- <table class="table"> -->
-                        <!-- <tfoot class="tfoot-dark"> -->
-                        <tfoot>
-                            <tr>
-                                <td scope="col">學生編號</td>
-                                <td scope="col">學生姓名</td>
-                                <td scope="col">加入時間</td>
-                                <td scope="col">更新時間</td>
-                            </tr>
-                            <tr>
-                                <td scope="col">A</td>
-                                <td scope="col"><input type="text" id="sInput" value="" max-length="50"></td>
-                            </tr>
-                        <!-- </tbody> -->
-                        <!-- <tfoot> -->
-                            <tr>
-                                <td scope="col">
-                                    <button class="btn-add btn btn-primary" id="btn-add" name="btn-add" role="button">新增</button>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    <!-- </table> -->
+                    <!-- <form type="POST" action="./addStudent.php"> -->
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">學生編號</th>
+                                    <th scope="col">學生姓名</th>
+                                    <th scope="col">加入時間</th>
+                                    <th scope="col">更新時間</th>
+                                </tr>
+                            </thead>
+                            <?php
+                                $sql = "SELECT `id`, `name`, `createdTime`, `updatedTime`
+                                        FROM `students`";
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute();
+
+                                if ($stmt->rowCount() > 0){
+                                    $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    for ($i = 0; $i < count($arr); $i++){
+
+                            ?>
+                            <tbody class="tbody">
+                                <tr>
+                                    <td scope="col"><?php echo $arr[$i]['id'] ?></td>
+                                    <td scope="col"><?php echo $arr[$i]['name'] ?></td>
+                                    <td scope="col"><?php echo $arr[$i]['createdTime'] ?></td>
+                                    <td scope="col"><?php echo $arr[$i]['updatedTime'] ?></td>
+                                </tr>
+                            </tbody>
+                            <?php } } ?>
+                        <!-- <table class="table"> -->
+                            <!-- <tfoot class="tfoot-dark"> -->
+                            <tfoot>
+                                <tr>
+                                    <td scope="col">學生姓名</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col"><input type="text" id="sInput" name="name" value="" max-length="50"></td>
+                                </tr>
+                            <!-- </tbody> -->
+                            <!-- <tfoot> -->
+                                <tr>
+                                    <td scope="col">
+                                        <button class="btn-add btn btn-primary" id="btn-add" name="btn-add" role="button">新增</button>
+                                        <button class="btn-add btn btn-primary" id="btn-refresh" name="btn-refresh" role="button">更新</button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>                    
+                    <!-- </form> -->
                 </div>
             </div>
         </div>
